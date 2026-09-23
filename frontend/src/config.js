@@ -1,1 +1,1 @@
-export const PORT = 5000;
+export const PORT = process.env.REACT_APP_API_URL || "http://localhost:5000";
