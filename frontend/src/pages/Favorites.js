@@ -22,7 +22,7 @@ function Favorites() {
       setError("");
       try {
         const res = await fetch(
-          `http://localhost:${PORT}/api/events/favorites`,
+          `${PORT}/api/events/favorites`,
           { headers: { Authorization: token } },
         );
         const data = await res.json();
