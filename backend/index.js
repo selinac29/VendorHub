@@ -82,6 +82,10 @@ app.post("/api/geocode", async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.json({ message: "VendorHub backend is running" });
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 
