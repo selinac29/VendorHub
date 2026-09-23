@@ -9,14 +9,7 @@ const User = require("./models/User");
 const app = express();
 const PORT = 5000;
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      process.env.FRONTEND_URL, // set this in Vercel env vars, e.g. https://your-app.vercel.app
-    ],
-  }),
-);
+app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
 
 // database connection
@@ -26,10 +19,7 @@ const clientOptions = {
   serverApi: { version: "1", strict: true, deprecationErrors: true },
 };
 
-let isConnected = false;
-
 async function connectDB() {
-  if (isConnected) return;
   try {
     await mongoose.connect(uri, clientOptions);
     await mongoose.connection.db.admin().command({ ping: 1 });
@@ -41,18 +31,12 @@ async function connectDB() {
       if (e.code !== 27) throw e;
     }
     await User.syncIndexes();
-
-    isConnected = true;
   } catch (err) {
     console.error("❌ Connection failed:", err);
   }
 }
 
-// ensure DB is connected before handling any request (needed for serverless)
-app.use(async (req, res, next) => {
-  await connectDB();
-  next();
-});
+connectDB();
 
 // GEOCODING ENDPOINT - uses backend API key to avoid exposing it to the frontend
 app.post("/api/geocode", async (req, res) => {
@@ -105,12 +89,6 @@ app.post("/api/geocode", async (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/events", eventRoutes);
 
-// only listen locally — Vercel handles invocation itself
-if (!process.env.VERCEL) {
-  connectDB();
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-}
-
-module.exports = app;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
