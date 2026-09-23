@@ -178,7 +178,7 @@ function Details() {
   useEffect(() => {
     async function fetchEvent() {
       try {
-        const res = await fetch(`http://localhost:${PORT}/api/events/${id}`);
+        const res = await fetch(`${PORT}/api/events/${id}`);
         const data = await res.json();
         if (res.ok) {
           setEvent(data);
@@ -186,7 +186,7 @@ function Details() {
           if (token) {
             try {
               const favRes = await fetch(
-                `http://localhost:${PORT}/api/events/favorites`,
+                `${PORT}/api/events/favorites`,
                 { headers: { Authorization: token } },
               );
               if (favRes.ok) {
@@ -214,7 +214,7 @@ function Details() {
     try {
       const method = isFavorited ? "DELETE" : "POST";
       const res = await fetch(
-        `http://localhost:${PORT}/api/events/${event._id}/favorite`,
+        `${PORT}/api/events/${event._id}/favorite`,
         { method, headers: { Authorization: token } },
       );
       if (res.ok) {
