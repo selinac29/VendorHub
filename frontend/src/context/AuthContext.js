@@ -17,7 +17,7 @@ export function AuthProvider({ children }) {
         setUser(decoded);
 
         // Fetching displayName & profilePicUrl
-        fetch(`http://localhost:${PORT}/api/auth/profile`, {
+        fetch(`${PORT}/api/auth/profile`, {
           headers: { Authorization: token },
         })
           .then((res) => (res.ok ? res.json() : null))
