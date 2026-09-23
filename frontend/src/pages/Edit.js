@@ -11,7 +11,7 @@ const geocodeAddress = async (address) => {
   }
 
   try {
-    const response = await fetch(`http://localhost:${PORT}/api/geocode`, {
+    const response = await fetch(`${PORT}/api/geocode`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -76,7 +76,7 @@ function Edit() {
 
     async function fetchEvent() {
       try {
-        const res = await fetch(`http://localhost:${PORT}/api/events/${id}`, {
+        const res = await fetch(`${PORT}/api/events/${id}`, {
           headers: { Authorization: token },
         });
         const data = await res.json();
@@ -190,7 +190,7 @@ function Edit() {
       .filter((url) => url !== "");
 
     try {
-      const res = await fetch(`http://localhost:${PORT}/api/events/${id}`, {
+      const res = await fetch(`${PORT}/api/events/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
