@@ -33,7 +33,7 @@ function Login() {
     setSubmitting(true);
 
     try {
-      const response = await fetch(`http://localhost:${PORT}/api/auth/login`, {
+      const response = await fetch(`${PORT}/api/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
