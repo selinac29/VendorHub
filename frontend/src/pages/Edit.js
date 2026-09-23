@@ -51,7 +51,6 @@ function Edit() {
   const [submitError, setSubmitError] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [geocoding, setGeocoding] = useState(false);
-  const [isOwner, setIsOwner] = useState(true);
 
   const { id } = useParams(); // id from /events/:id/edit
   const { isAuthenticated } = useAuth();
@@ -90,7 +89,6 @@ function Edit() {
         // Check ownership
         const ownerId = data.owner?._id || data.owner;
         if (user && ownerId && ownerId.toString() !== user.id) {
-          setIsOwner(false);
           setLoading(false);
           return;
         }
