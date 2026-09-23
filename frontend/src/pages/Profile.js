@@ -38,7 +38,7 @@ function Profile() {
 
     async function fetchProfile() {
       try {
-        const res = await fetch(`http://localhost:${PORT}/api/auth/profile`, {
+        const res = await fetch(`${PORT}/api/auth/profile`, {
           headers: { Authorization: token },
         });
         const data = await res.json();
@@ -111,7 +111,7 @@ function Profile() {
 
     // Save display name & profile pic URL
     try {
-      const res = await fetch(`http://localhost:${PORT}/api/auth/profile`, {
+      const res = await fetch(`${PORT}/api/auth/profile`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -146,7 +146,7 @@ function Profile() {
     if (changePassword) {
       try {
         const res = await fetch(
-          `http://localhost:${PORT}/api/auth/change-password`,
+          `${PORT}/api/auth/change-password`,
           {
             method: "PUT",
             headers: {
