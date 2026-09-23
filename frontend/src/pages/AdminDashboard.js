@@ -26,7 +26,7 @@ function AdminDashboard() {
 
     try {
       const usersResponse = await fetch(
-        `http://localhost:${PORT}/api/auth/admin/users`,
+        `${PORT}/api/auth/admin/users`,
         { headers: { Authorization: token } },
       );
 
@@ -39,7 +39,7 @@ function AdminDashboard() {
       }
 
       const eventsResponse = await fetch(
-        `http://localhost:${PORT}/api/events/admin/all-events`,
+        `${PORT}/api/events/admin/all-events`,
         { headers: { Authorization: token } },
       );
 
@@ -100,7 +100,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:${PORT}/api/auth/admin/users/${userId}`,
+        `${PORT}/api/auth/admin/users/${userId}`,
         { method: "DELETE", headers: { Authorization: token } },
       );
 
@@ -130,7 +130,7 @@ function AdminDashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:${PORT}/api/events/${eventId}`,
+        `${PORT}/api/events/${eventId}`,
         { method: "DELETE", headers: { Authorization: token } },
       );
 
