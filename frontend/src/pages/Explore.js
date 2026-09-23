@@ -28,7 +28,7 @@ function Explore() {
   useEffect(() => {
     async function fetchListings() {
       try {
-        const response = await fetch(`http://localhost:${PORT}/api/events`);
+        const response = await fetch(`${PORT}/api/events`);
         const data = await response.json();
         if (response.ok) {
           setListings(Array.isArray(data) ? data : []);
